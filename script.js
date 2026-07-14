@@ -18,7 +18,7 @@ const translations = {
     emptyTitle: "Nenhum prato encontrado",
     emptyText: "Tente outro nome, ingrediente ou categoria.",
     resetButton: "Limpar filtros",
-    disclaimer: "Desenvolvido por Marco Aurelio Silva",
+    disclaimer: "Desenvolvido por Marco Aurelio Silva. Uso exclusivo por Laecyo Brandão, dados do cardápio obtidos na internet",
     officialMenu: "Consultar cardápio oficial",
   },
   en: {
@@ -38,7 +38,7 @@ const translations = {
     emptyTitle: "No dishes found",
     emptyText: "Try another name, ingredient or category.",
     resetButton: "Clear filters",
-    disclaimer: "Developed by Marco Aurelio Silva",
+    disclaimer: "Developed by Marco Aurelio Silva. For exclusive use by Laecyo Brandão; menu data obtained from the internet",
     officialMenu: "View official menu",
   }
 };
