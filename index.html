@@ -1,147 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#11100f" />
-  <meta name="description" content="Demonstração mobile de cardápio bilíngue inspirado no menu do Outback Brasil." />
-
-  <meta property="og:title" content="Menu Bilíngue | Outback" />
-  <meta property="og:description" content="Cardápio bilíngue do Outback com busca, categorias, favoritos e traduções em português e inglês." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://coreilabs.github.io/outback/" />
-  <meta property="og:site_name" content="Menu Bilíngue | Outback" />
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:locale:alternate" content="en_US" />
-  <meta property="og:image" content="https://coreilabs.github.io/outback/og.png" />
-  <meta property="og:image:secure_url" content="https://coreilabs.github.io/outback/og.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Logotipo Outback Steakhouse" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Menu Bilíngue | Outback" />
-  <meta name="twitter:description" content="Cardápio bilíngue do Outback com busca, categorias, favoritos e traduções em português e inglês." />
-  <meta name="twitter:image" content="https://coreilabs.github.io/outback/og.png" />
-  <meta name="twitter:image:alt" content="Logotipo Outback Steakhouse" />
-
-  <link rel="canonical" href="https://coreilabs.github.io/outback/" />
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <title>Menu Bilíngue | Outback</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#18120f">
+  <meta name="description" content="Cardápio Outback com nomes originais, pronúncia em português e fotos dos produtos.">
+  <title>Cardápio Outback — Guia de pronúncia</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://cdn.outback.com.br" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <header class="hero">
-      <nav class="topbar" aria-label="Barra superior">
-        <div class="brand" aria-label="Menu bilíngue">
-          <span class="brand-mark" aria-hidden="true">OB</span>
-          <div>
-            <strong>OUTBACK</strong>
-            <small>MENU BILÍNGUE</small>
-          </div>
-        </div>
-
-        <button class="language-toggle" id="languageToggle" type="button" aria-label="Alterar idioma">
-          <span class="language-option is-active" data-language-label="pt">PT</span>
-          <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span>
-          <span class="language-option" data-language-label="en">EN</span>
-        </button>
-      </nav>
-
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand"><span class="brand-mark">OB</span><div><strong>OUTBACK</strong><small>GUIA DO CARDÁPIO</small></div></div>
       <div class="hero-copy">
-        <span class="eyebrow" data-i18n="eyebrow">SABOR MARCANTE</span>
-        <h1 data-i18n="heroTitle">Escolha seu favorito.</h1>
-        <p data-i18n="heroSubtitle">Nomes originais e tradução de cada prato em uma experiência feita para celular.</p>
+        <span class="eyebrow">NOMES SEM COMPLICAÇÃO</span>
+        <h1>Peça com confiança.</h1>
+        <p>Veja o nome original e leia em português como pronunciar cada produto.</p>
       </div>
+      <label class="search-box" for="searchInput">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65A8 8 0 1 1 3 11a8 8 0 0 1 16 0Z"/></svg>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="Buscar produto">
+        <button id="clearSearch" type="button" aria-label="Limpar busca" hidden>&times;</button>
+      </label>
+    </div>
+  </header>
 
-      <div class="search-box">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="m21 21-4.35-4.35m2.35-5.65A8 8 0 1 1 3 11a8 8 0 0 1 16 0Z" />
-        </svg>
-        <input id="searchInput" type="search" autocomplete="off" placeholder="Buscar prato ou ingrediente" aria-label="Buscar prato ou ingrediente" />
-        <button id="clearSearch" class="clear-search" type="button" aria-label="Limpar busca" hidden>&times;</button>
-      </div>
-    </header>
+  <main>
+    <nav class="menu-tabs" id="menuTabs" aria-label="Cardápios"></nav>
+    <section class="catalog" aria-live="polite">
+      <div class="section-heading"><div><span>PRODUTOS</span><h2 id="resultsTitle">Todos os produtos</h2></div><strong id="resultCount">0 itens</strong></div>
+      <div class="menu-grid" id="menuGrid"></div>
+      <div class="empty-state" id="emptyState" hidden><h3>Nenhum produto encontrado</h3><p>Tente buscar por outro nome.</p><button id="resetFilters" type="button">Limpar busca</button></div>
+    </section>
+  </main>
 
-    <main>
-      <section class="category-section" aria-label="Categorias">
-        <div class="category-list" id="categoryList"></div>
-      </section>
-
-      <section class="menu-section" aria-live="polite">
-        <div class="section-heading">
-          <div>
-            <span class="section-kicker" data-i18n="sectionKicker">CARDÁPIO PRINCIPAL</span>
-            <h2 id="resultsTitle">Todos os pratos</h2>
-          </div>
-          <span class="result-count" id="resultCount">0 itens</span>
-        </div>
-
-        <div class="menu-grid" id="menuGrid"></div>
-
-        <div class="empty-state" id="emptyState" hidden>
-          <div class="empty-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65A8 8 0 1 1 3 11a8 8 0 0 1 16 0Z" /></svg>
-          </div>
-          <h3 data-i18n="emptyTitle">Nenhum prato encontrado</h3>
-          <p data-i18n="emptyText">Tente outro nome, ingrediente ou categoria.</p>
-          <button id="resetFilters" type="button" data-i18n="resetButton">Limpar filtros</button>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <p data-i18n="disclaimer">Desenvolvido por Marco Aurélio Silva</p>
-      <a href="mailto:coreilabsbr@gmail.com">coreilabsbr@gmail.com</a>
-
-    </footer>
-  </div>
+  <footer><p>Guia demonstrativo. Produtos e imagens consultados no cardápio oficial do Outback Brasil.</p><a href="https://www.outback.com.br/nossosprodutos" target="_blank" rel="noopener noreferrer">Ver cardápio oficial</a></footer>
 
   <template id="menuCardTemplate">
-    <article class="menu-card" tabindex="0" aria-haspopup="dialog">
-      <div class="food-visual" aria-hidden="true">
-        <span class="food-initials"></span>
-        <span class="food-label"></span>
-      </div>
-
+    <article class="menu-card">
+      <div class="photo-wrap"><img class="product-photo" alt="" loading="lazy" decoding="async"><span class="photo-fallback">Imagem indisponível</span></div>
       <div class="card-content">
-        <div class="card-topline">
-          <span class="category-badge"></span>
-          <button class="favorite-button" type="button" aria-label="Adicionar aos favoritos">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 20.8 4.9 14A4.8 4.8 0 0 1 12 7.5 4.8 4.8 0 0 1 19.1 14L12 20.8Z" />
-            </svg>
-          </button>
-        </div>
-
-        <h3 class="item-name"></h3>
-        <p class="item-translation"></p>
-        <p class="item-description"></p>
-
-        <div class="card-footer">
-          <span class="availability"></span>
-        </div>
+        <span class="menu-label"></span>
+        <h3 class="product-name"></h3>
+        <p class="pronunciation"><span>Como falar:</span> <strong></strong></p>
+        <p class="product-description"></p>
       </div>
     </article>
   </template>
-
-  <div class="modal" id="detailsModal" hidden>
-    <div class="modal-backdrop" data-close-modal></div>
-    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-handle" aria-hidden="true"></div>
-      <button class="modal-close" type="button" data-close-modal aria-label="Fechar">&times;</button>
-      <span class="modal-category" id="modalCategory"></span>
-      <h2 id="modalTitle"></h2>
-      <p class="modal-translation" id="modalTranslation"></p>
-      <p class="modal-description" id="modalDescription"></p>
-    </section>
-  </div>
-
   <script src="script.js"></script>
 </body>
 </html>
