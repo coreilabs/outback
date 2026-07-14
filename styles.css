@@ -356,7 +356,13 @@ button {
   border-radius: var(--radius-md);
   background: var(--surface-strong);
   box-shadow: 0 12px 30px rgba(49, 30, 18, 0.08);
+  cursor: pointer;
   animation: cardIn 360ms ease both;
+}
+
+.menu-card:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
 }
 
 @keyframes cardIn {
@@ -512,28 +518,6 @@ button {
   font-weight: 700;
 }
 
-.details-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  padding: 0;
-  border: 0;
-  color: var(--red);
-  background: transparent;
-  font-size: 11px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.details-button svg {
-  width: 16px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 .empty-state {
   padding: 42px 18px;
   border: 1px dashed rgba(35, 28, 21, 0.18);
@@ -592,6 +576,7 @@ button {
 }
 
 .footer a {
+  display: block;
   color: var(--gold);
   font-size: 11px;
   font-weight: 800;
@@ -682,23 +667,6 @@ button {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.7;
-}
-
-.modal-note {
-  display: grid;
-  gap: 4px;
-  margin-top: 22px;
-  padding: 15px;
-  border-left: 4px solid var(--gold);
-  border-radius: 0 14px 14px 0;
-  color: var(--muted);
-  background: rgba(214, 166, 77, 0.1);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.modal-note strong {
-  color: var(--ink);
 }
 
 body.modal-open {

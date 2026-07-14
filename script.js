@@ -12,16 +12,14 @@ const translations = {
     itemSingular: "item",
     itemPlural: "itens",
     availability: "Consulte a unidade",
-    details: "Detalhes",
+    openDetails: "Abrir detalhes",
     favoriteAdd: "Adicionar aos favoritos",
     favoriteRemove: "Remover dos favoritos",
     emptyTitle: "Nenhum prato encontrado",
     emptyText: "Tente outro nome, ingrediente ou categoria.",
     resetButton: "Limpar filtros",
-    disclaimer: "Projeto demonstrativo e não oficial. Disponibilidade, composição e preços podem variar por restaurante.",
+    disclaimer: "Desenvolvido por Marco Aurelio Silva",
     officialMenu: "Consultar cardápio oficial",
-    modalNoteTitle: "Observação",
-    modalNoteText: "Consulte a unidade sobre disponibilidade, alergênicos, gramatura e preço."
   },
   en: {
     eyebrow: "BOLD FLAVOUR",
@@ -34,16 +32,14 @@ const translations = {
     itemSingular: "item",
     itemPlural: "items",
     availability: "Ask your local restaurant",
-    details: "Details",
+    openDetails: "Open details",
     favoriteAdd: "Add to favourites",
     favoriteRemove: "Remove from favourites",
     emptyTitle: "No dishes found",
     emptyText: "Try another name, ingredient or category.",
     resetButton: "Clear filters",
-    disclaimer: "Unofficial demonstration project. Availability, ingredients and prices may vary by restaurant.",
+    disclaimer: "Developed by Marco Aurelio Silva",
     officialMenu: "View official menu",
-    modalNoteTitle: "Please note",
-    modalNoteText: "Ask your local restaurant about availability, allergens, serving size and price."
   }
 };
 
@@ -433,6 +429,7 @@ function renderMenu() {
     const isFavorite = state.favorites.has(item.id);
 
     card.dataset.itemId = item.id;
+    card.setAttribute("aria-label", `${item.name} — ${currentCopy("openDetails")}`);
     card.style.animationDelay = `${Math.min(index * 35, 280)}ms`;
     visual.style.setProperty("--visual-1", item.visual[0]);
     visual.style.setProperty("--visual-2", item.visual[1]);
@@ -444,7 +441,6 @@ function renderMenu() {
     fragment.querySelector(".item-translation").textContent = item.translation[state.language];
     fragment.querySelector(".item-description").textContent = item.description[state.language];
     fragment.querySelector(".availability").textContent = currentCopy("availability");
-    fragment.querySelector(".details-label").textContent = currentCopy("details");
 
     favoriteButton.classList.toggle("is-favorite", isFavorite);
     favoriteButton.setAttribute(
@@ -563,9 +559,18 @@ elements.menuGrid.addEventListener("click", (event) => {
     return;
   }
 
-  if (event.target.closest(".details-button")) {
-    openModal(card.dataset.itemId);
-  }
+  openModal(card.dataset.itemId);
+});
+
+elements.menuGrid.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  if (event.target.closest(".favorite-button")) return;
+
+  const card = event.target.closest(".menu-card");
+  if (!card) return;
+
+  event.preventDefault();
+  openModal(card.dataset.itemId);
 });
 
 elements.modal.addEventListener("click", (event) => {
